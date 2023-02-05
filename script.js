@@ -1,3 +1,5 @@
+import Ball from "./Ball.js"
+const ball = new Ball(document.getElementById("ball"))
 // COMMIT MESSAGES
 
 // initial javascript setup with gameloop
@@ -9,7 +11,7 @@ let lastTime
 function gameloop(time){
     if(lastTime != null){
         const delta = time - lastTime
-        //necessary code here
+        ball.update(delta)
     }
     lastTime = time
     window.requestAnimationFrame(gameloop)
