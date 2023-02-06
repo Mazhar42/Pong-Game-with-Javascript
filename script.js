@@ -6,12 +6,6 @@ const computerPaddle = new Paddle(document.getElementById("computer-paddle"))
 const computerScore = document.getElementById("computer-score")
 const playerScore = document.getElementById("player-score")
 
-// COMMIT MESSAGES
-
-// initial javascript setup with gameloop
-// working with ball section of the game
-// working with paddle section of the game
-// finishing the game working with game logic
 
 let lastTime 
 function gameloop(time){
@@ -19,6 +13,11 @@ function gameloop(time){
         const delta = time - lastTime
         ball.update(delta,[playerPaddle.rect(),computerPaddle.rect()])
         computerPaddle.update(delta,ball.y)
+
+                
+        const hue = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--hue"))
+
+        document.documentElement.style.setProperty("--hue",hue + delta * 0.005)
 
         if(isLose()) handleLose()
     }
