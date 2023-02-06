@@ -16,12 +16,12 @@ body {
 }
 
 .paddle {
-    --positon: 50;
+    --position: 50;
     position: absolute;
     height: 10vh;
     width: 1vh;
     background-color: var(--foreground-color);
-    top: calc(var(--positon) * 1vh);
+    top: calc(var(--position) * 1vh);
     transform: translateY(-50%);
 }
 .paddle.left {
