@@ -39,13 +39,22 @@ export default class Ball{
         this.velocity = INITIAL_VELOCITY
     }
 
-    update(delta){
+    update(delta,paddleRects){
         this.x += this.direction.x * this.velocity * delta
         this.y += this.direction.y * this.velocity * delta
         this.velocity += VELOCITY_INCREASE * delta
         const rect = this.rect()
         if(rect.bottom >= window.innerHeight || rect.top <= 0) this.direction.y *= -1
-        if(rect.right >= window.innerWidth || rect.left <= 0) this.direction.x *= -1
+        if(paddleRects.some(r => isCollision(r,rect))) this.direction.x *= -1
     }
 
+}
+
+function isCollision(paddle,ball){
+    return (
+        paddle.left <= ball.right &&
+        paddle.right >= ball.left &&
+        paddle.top <= ball.bottom &&
+        paddle.bottom >= ball.top
+    )
 }
